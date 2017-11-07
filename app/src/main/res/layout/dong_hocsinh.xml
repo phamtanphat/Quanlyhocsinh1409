@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_margin="5dp"
+        android:textColor="#f20"
+        android:id="@+id/textviewten"
+        android:textSize="25sp"
+        android:text="Ten hoc sinh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_below="@id/textviewten"
+        android:layout_margin="5dp"
+        android:textColor="#3b73ab"
+        android:id="@+id/textviewdiachi"
+        android:textSize="25sp"
+        android:text="Dia chi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_alignBaseline="@+id/textviewdiachi"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/textviewten"
+        android:layout_margin="5dp"
+        android:textColor="#bec1bf"
+        android:id="@+id/textviewnamsinh"
+        android:textSize="20sp"
+        android:text="Nam sinh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
