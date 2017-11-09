@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         hocsinhAdapter = new HocsinhAdapter(MainActivity.this,manghocsinh);
         Getdata();
         lvhocsinh.setAdapter(hocsinhAdapter);
+        gantext
     }
 
     private void Getdata() {
