@@ -1,8 +1,11 @@
 package com.ptp.phamtanphat.quanlyhocsinh1409.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,7 +39,13 @@ public class MainActivity extends AppCompatActivity {
         hocsinhAdapter = new HocsinhAdapter(MainActivity.this,manghocsinh);
         Getdata();
         lvhocsinh.setAdapter(hocsinhAdapter);
-        gantext
+        lvhocsinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this,ThemHocSinh.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void Getdata() {
