@@ -11,6 +11,23 @@
         android:text="Ten hoc sinh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imageviewsua"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/textviewnamsinh"
+        android:layout_alignRight="@+id/textviewnamsinh"
+        android:layout_alignTop="@+id/textviewten"
+        android:src="@android:drawable/ic_menu_edit" />
+    <ImageView
+        android:id="@+id/imageviewxoa"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/imageviewsua"
+        android:layout_alignTop="@+id/textviewten"
+        android:src="@android:drawable/ic_delete" />
     <TextView
         android:layout_below="@id/textviewten"
         android:layout_margin="5dp"

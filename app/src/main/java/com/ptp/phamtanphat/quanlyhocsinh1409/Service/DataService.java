@@ -23,4 +23,15 @@ public interface DataService {
     Call<String> Insertdata(@Field("tenhocsinh") String ten
                             ,@Field("namsinh") String namsinh
                             ,@Field("diachi") String diachi);
+
+    @FormUrlEncoded
+    @POST("delete.php")
+    Call<String> Deletedata(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("update.php")
+    Call<String> Update(@Field("ten") String ten
+            ,@Field("diachi") String diachi
+            ,@Field("namsinh") String namsinh
+            ,@Field("id") String id);
 }

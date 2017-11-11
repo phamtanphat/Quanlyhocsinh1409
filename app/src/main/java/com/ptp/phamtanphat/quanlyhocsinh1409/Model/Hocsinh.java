@@ -3,7 +3,9 @@ package com.ptp.phamtanphat.quanlyhocsinh1409.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Hocsinh {
+import java.io.Serializable;
+
+public class Hocsinh implements Serializable{
 
     @SerializedName("Id")
     @Expose
