@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -37,18 +39,30 @@ public class MainActivity extends AppCompatActivity {
         lvhocsinh = findViewById(R.id.listview);
         manghocsinh = new ArrayList<>();
         hocsinhAdapter = new HocsinhAdapter(MainActivity.this,manghocsinh);
-        Getdata();
         lvhocsinh.setAdapter(hocsinhAdapter);
-        lvhocsinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(MainActivity.this,ThemHocSinh.class);
-                startActivity(intent);
-            }
-        });
+        Getdata();
+//        Log.d("BBB","Gia tri oncreate" + manghocsinh.size());
+
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_them,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menuthem){
+            Intent intent = new Intent(MainActivity.this,ThemHocSinh.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     private void Getdata() {
+        manghocsinh.clear();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.1.181/quanlyhocsinh1409/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -58,9 +72,12 @@ public class MainActivity extends AppCompatActivity {
         listCallhocsinh.enqueue(new Callback<List<Hocsinh>>() {
             @Override
             public void onResponse(Call<List<Hocsinh>> call, Response<List<Hocsinh>> response) {
-                ArrayList<Hocsinh> mangtong = (ArrayList<Hocsinh>) response.body();
-
-                hocsinhAdapter.UpdateUI(mangtong);
+                if (response.isSuccessful()){
+                    manghocsinh.clear();
+                    Log.d("BBB","Gia tri " + manghocsinh.size());
+                    manghocsinh = (ArrayList<Hocsinh>) response.body();
+                    hocsinhAdapter.UpdateUI(manghocsinh);
+                }
             }
 
             @Override

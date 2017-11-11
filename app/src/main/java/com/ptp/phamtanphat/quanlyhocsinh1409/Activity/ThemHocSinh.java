@@ -1,5 +1,6 @@
 package com.ptp.phamtanphat.quanlyhocsinh1409.Activity;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -58,7 +59,9 @@ public class ThemHocSinh extends AppCompatActivity {
                         String ketqua = response.body();
                         if (ketqua.equals("successfull")){
                             Toast.makeText(ThemHocSinh.this, ketqua, Toast.LENGTH_SHORT).show();
-                            finish();
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+//                            finish();
                         }else {
                             Toast.makeText(ThemHocSinh.this, "Loi", Toast.LENGTH_SHORT).show();
                         }
