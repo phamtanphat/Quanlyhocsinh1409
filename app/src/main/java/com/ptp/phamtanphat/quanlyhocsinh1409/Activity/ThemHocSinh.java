@@ -10,8 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.ptp.phamtanphat.quanlyhocsinh1409.R;
+import com.ptp.phamtanphat.quanlyhocsinh1409.Service.APIRetrofitClient;
+import com.ptp.phamtanphat.quanlyhocsinh1409.Service.APIService;
 import com.ptp.phamtanphat.quanlyhocsinh1409.Service.DataService;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,24 +50,23 @@ public class ThemHocSinh extends AppCompatActivity {
                 String namsinh = edtnamsinh.getText().toString();
                 String diachi = edtdiachi.getText().toString();
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.1.181/quanlyhocsinh1409/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .build();
-                // Nhan du lieu khi duoc get ve
-                DataService dataService = retrofit.create(DataService.class);
-                Call<String> call = dataService.Insertdata(ten,namsinh,diachi);
-                call.enqueue(new Callback<String>() {
+                DataService dataService = APIService.getService();
+                Call<String> callback = dataService.Insertdata(ten,namsinh,diachi);
+                callback.enqueue(new Callback<String>() {
                     @Override
-                    public void onResponse(Call<String> call, final Response<String> response) {
-                        ketqua = response.body().toString();
-                        System.out.print(ketqua);
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        String ketqua = response.body();
+                        if (ketqua.equals("successfull")){
+                            Toast.makeText(ThemHocSinh.this, ketqua, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else {
+                            Toast.makeText(ThemHocSinh.this, "Loi", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        Log.d("BBB",t.getMessage().toString());
+
                     }
                 });
 
